@@ -1,24 +1,91 @@
-# README
+  # アプリケーション名
+  our voca
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  # アプリケーション概要
+  「our voca」は、国際恋愛カップルがペアで使用する単語帳作成アプリです。  
+  特に学習リソースが乏しいマイナー言語を母国語とするパートナーを持つ人々を対象に、以下の課題を解決することを目的としています：
+  - 学習リソース不足: マイナー言語に関する翻訳データや音声データが少ない。
+  - 効率的な単語学習: ペアで協力して単語データを作成し、翻訳の正確性を向上。
+  - パートナーシップの強化: 言語学習を通じてコミュニケーションと絆を深める。
 
-Things you may want to cover:
+  アプリでは、単語の登録・一覧・クイズを通じて、学習と双方向的な交流を促進します。
 
-* Ruby version
+  # URL
+  https://our-voca.onrender.com
 
-* System dependencies
+  # テスト用アカウント
+  ログイン機能等を実装した場合は、ログインに必要な情報を記載。またBasic認証等を設けている場合は、そのID/Passも記載すること。
 
-* Configuration
+  # 利用方法
+  このアプリケーションの利用方法を記載。説明が長い場合は、箇条書きでリスト化すること。
 
-* Database creation
+  # アプリケーションを作成した背景
+  学習リソースが豊富な英語などのメジャー言語と異なり、マイナー言語は翻訳ツールや音声データが非常に限られています。  
+  例えば、日本語⇔ラオス語の学習者は需要が少ないため、効果的な学習手段がほとんど存在しません。  
+  その結果、以下のような課題が生じています：
+  - 既存アプリの限界:
+    - 運営側が準備した単語データを利用するアプリでは、マイナー言語の対応がない。
+    - 単語帳を自作するアプリでは、翻訳の正確性を確認する手段が乏しく、ネイティブ音声も提供されない。
+  - 言語学習の必要性:
+    - 相手の母国語で話すことで、情報としてだけでなく、相手の心に届くコミュニケーションが可能になる。
+    - 自身の経験から、母国語でのやり取りは相手との関係を深める重要な手段であると実感。
 
-* Database initialization
+  こうした課題に対処するため、「our voca」では、カップルが協力して単語帳を作成する仕組みを採用しました。
+  これにより、効率的にマイナー言語を学ぶだけでなく、学習プロセスそのものがコミュニケーションの一環となり、
+  パートナー同士の絆を深めることを目指しています。
 
-* How to run the test suite
+  # 実装した機能についての画像やGIFおよびその説明※
+  実装した機能について、それぞれどのような特徴があるのかを列挙する形で記載。画像はGyazoで、GIFはGyazoGIFで撮影すること。
+  [![Image from Gyazo](https://i.gyazo.com/cce89fd24423ce672bb4d85db2e5f5fe.png)](https://gyazo.com/cce89fd24423ce672bb4d85db2e5f5fe)
 
-* Services (job queues, cache servers, search engines, etc.)
+  # 実装予定の機能
+  洗い出した要件の中から、今後実装予定の機能がある場合は、その機能を記載。
 
-* Deployment instructions
+  # データベース設計
+  [![Image from Gyazo](https://i.gyazo.com/49446276334d604cdfb244b67562b23d.png)](https://gyazo.com/49446276334d604cdfb244b67562b23d)
 
-* ...
+  ## users テーブル
+
+  | Column             | Type   | Options                   |
+  | ------------------ | ------ | ------------------------- |
+  | email              | string | null: false, unique: true |
+  | encrypted_password | string | null: false               |
+
+  ### Association
+
+  - has_many :words
+
+  ## items テーブル
+
+  | Column            | Type       | Options                        |
+  | ----------------- | ---------- | ------------------------------ |
+  | common_lang       | string     |                                |
+  | lang1_translation | string     |                                |
+  | lang2_translation | string     |                                |
+  | lang1_pron_text   | string     |                                |
+  | lang2_pron_text   | string     |                                |
+  | status            | boolean    | default: false                 |
+  | favorite          | boolean    | default: false                 |
+  | user              | references | null: false, foreign_key: true |
+
+  ### Association
+
+  - belongs_to :user
+
+  # 画面遷移図
+  [![Image from Gyazo](https://i.gyazo.com/65cc54bfad53855b858bf4efbac2bde6.png)](https://gyazo.com/65cc54bfad53855b858bf4efbac2bde6)
+
+  # 開発環境
+  使用した言語・サービスを記載。
+
+  # ローカルでの動作方法
+  git cloneしてから、ローカルで動作をさせるまでに必要なコマンドを記載。
+
+  # 工夫したポイント
+  制作背景・使用技術・開発方法・タスク管理など、企業へＰＲしたい事柄を記載。
+
+  # 改善点
+  より改善するとしたらどこか、それはどのようにしてやるのか。
+
+  # 制作時間
+  一か月
